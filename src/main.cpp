@@ -74,7 +74,7 @@ class MyServerCallbacks : public BLEServerCallbacks {
     }
 };
 
-// BLE特性回调类，用于处理从BLE客户端接收的数据
+// BLE characteristic
 class MyCallbacks : public BLECharacteristicCallbacks {
     void onWrite(BLECharacteristic *pCharacteristic) {
         std::string rxValue = pCharacteristic->getValue();
