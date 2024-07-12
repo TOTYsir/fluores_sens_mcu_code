@@ -1,0 +1,33 @@
+{
+	"folders": [
+		{
+			"path": "D:/MRIGI_individual_workspace/platformIO"
+		},
+		{
+			"name": "fluorescence",
+			"path": ".."
+		},
+		{
+			"name": "test",
+			"path": "../../test"
+		},
+		{
+			"name": "fluorescence",
+			"path": "C:/Users/Wang/Documents/PlatformIO/Projects/fluorescence"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"optional": "cpp",
+			"istream": "cpp",
+			"ostream": "cpp",
+			"system_error": "cpp",
+			"array": "cpp",
+			"functional": "cpp",
+			"tuple": "cpp",
+			"type_traits": "cpp",
+			"utility": "cpp",
+			"cmath": "cpp"
+		}
+	}
+}
