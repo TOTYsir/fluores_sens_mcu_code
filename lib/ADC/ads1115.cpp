@@ -5,7 +5,7 @@ Adafruit_ADS1115 ads;
 
 void adc_init() {
     if (!ads.begin()) {
-        Serial.println("Failed to initialize ADS.");
+        Serial.println("Failed to initialise ADC");
         // while (1); // Keep waiting
     }
     ads.setDataRate(RATE_ADS1115_250SPS);

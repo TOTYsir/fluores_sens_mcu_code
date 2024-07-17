@@ -7,7 +7,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 void lcd_init(void) {
     if (!display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR)) {
-        Serial.println(F("SSD1306 allocation failed"));
+        Serial.println("Failed to initialise LCD");
         // while (1); // Keep waiting
     }
     display.display();

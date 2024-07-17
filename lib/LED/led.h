@@ -11,7 +11,7 @@
 #define SAMPLES_PER_OFF_CYCLE 60
 
 
-void led_pwm_init();
-void led_control(float dutyCycle);
+void led_pwm_init(float dutyCycle);
+int led_control(float dutyCycle, int sample_cnt);
 
 #endif

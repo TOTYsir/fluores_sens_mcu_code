@@ -66,7 +66,7 @@ void ble_send(float volts0, float volts1) {
     if (!deviceConnected && oldDeviceConnected) {
         delay(500);
         pServer->startAdvertising();
-        Serial.println("Start advertising");
+        // Serial.println("Start advertising");
         oldDeviceConnected = deviceConnected;
     }
     if (deviceConnected && !oldDeviceConnected) {
