@@ -27,7 +27,11 @@
 			"tuple": "cpp",
 			"type_traits": "cpp",
 			"utility": "cpp",
-			"cmath": "cpp"
+			"cmath": "cpp",
+			"adafruit_ssd1306.h": "c",
+			"adafruit_gfx.h": "c",
+			"wire.h": "c",
+			"ssd1306.h": "c"
 		}
 	}
 }
