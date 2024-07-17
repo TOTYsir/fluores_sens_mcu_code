@@ -12,14 +12,11 @@ void adc_init() {
 }
 
 
-void adc_read_store(float photodiode_readings[3][50], int &data_index) {
+void adc_read_store(float photodiode_readings[2][50], int &data_index) {
     int16_t adc0 = ads.readADC_SingleEnded(0);
     int16_t adc1 = ads.readADC_SingleEnded(1);
     float volts0 = ads.computeVolts(adc0);
     float volts1 = ads.computeVolts(adc1);
-
-    unsigned long elapsedTime = millis();
-    Serial.printf("Time: %lu ms, PDy Voltage: %.2f V, PDo Voltage: %.2f V\n", elapsedTime, volts0, volts1);
 
     if (data_index < 50) {
         photodiode_readings[0][data_index] = volts0;

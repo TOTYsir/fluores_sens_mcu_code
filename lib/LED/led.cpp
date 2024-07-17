@@ -24,6 +24,10 @@ void led_control(float dutyCycle) {
         } else {
             ledcWrite(PWM_CHANNEL, 0);
         }
+
+        Serial.printf("Cycle: %d, Total Sample: %d, Cycle Sample: %d, ", 
+            cycleCounter, totalSampleCounter, sampleCounter);
+        
         sampleCounter = 0;
         if (LEDState == HIGH) {
             cycleCounter++;
