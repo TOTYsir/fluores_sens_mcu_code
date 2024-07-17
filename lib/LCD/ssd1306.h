@@ -7,7 +7,9 @@
 #define SCREEN_HEIGHT 64
 #define OLED_ADDR 0x3C
 
+
 void lcd_init(void);
-void lcd_flush(float volts0, float volts1);
+void lcd_flush(float volts0, float volts1, float norm);
+
 
 #endif

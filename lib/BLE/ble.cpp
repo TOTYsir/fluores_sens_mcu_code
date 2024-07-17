@@ -56,10 +56,10 @@ void ble_init() {
 }
 
 
-void ble_send(float volts0, float volts1) {
+void ble_send(float volts0, float volts1, float norm_val) {
     if (deviceConnected) {
         char txString[64];
-        snprintf(txString, sizeof(txString), "PDy: %.2f V\nPDo: %.2f V\n", volts0, volts1);
+        snprintf(txString, sizeof(txString), "PDy: %.2f V, PDo: %.2f V, norm: %.2f\n", volts0, volts1, norm_val);
         pTxCharacteristic->setValue(txString);
         pTxCharacteristic->notify();
     }

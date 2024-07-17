@@ -5,16 +5,18 @@
 #include <led.h>
 #include <ble.h>
 #include <uart.h>
+#include <util.h>
 
 // Sample period
 #define SAMPLING_TIME_MS 200
 
 // Serial configuration
 #define BAUD_RATE 115200
+
 // ADC readings configuration
-#define MAX_SIZE 50
-float photodiode_readings[3][MAX_SIZE];
-int data_index = 0;
+float pd_0[SAMPLES_PER_ON_CYCLE+SAMPLES_PER_OFF_CYCLE];
+float pd_1[SAMPLES_PER_ON_CYCLE+SAMPLES_PER_OFF_CYCLE];
+
 // PWM settings
 float pwm_duty_cycle = 0.70;
 
@@ -22,6 +24,8 @@ float pwm_duty_cycle = 0.70;
 int sampleCounter = 1;
 int totalSampleCounter = 1;
 int cycleCounter = 1;
+
+float norm_val = 0.0;
 
 
 
@@ -33,17 +37,24 @@ void setup() {
     ble_init();
 }
 
+
 void loop() {
    unsigned long startMillis = millis();
 
     int cycle_finish_flag = led_control(pwm_duty_cycle, sampleCounter);
 
-    adc_read_store(photodiode_readings, data_index);
-    float volts0 = photodiode_readings[0][data_index - 1];
-    float volts1 = photodiode_readings[1][data_index - 1];
-    lcd_flush(volts0, volts1);
-    serial_update(volts0, volts1, sampleCounter, totalSampleCounter, cycleCounter);
-    ble_send(volts0, volts1);
+    int data_index = sampleCounter - 1;
+    adc_read_store(pd_0, pd_1, data_index);
+    float volts0 = pd_0[data_index];
+    float volts1 = pd_1[data_index];
+
+    if (sampleCounter == SAMPLES_PER_ON_CYCLE + SAMPLES_PER_OFF_CYCLE) {
+        norm_val = get_norm(pd_0, pd_1);
+    }
+
+    lcd_flush(volts0, volts1, norm_val);
+    serial_update(volts0, volts1, norm_val, sampleCounter, totalSampleCounter, cycleCounter);
+    ble_send(volts0, volts1, norm_val);
 
     sampleCounter++;
     totalSampleCounter++;

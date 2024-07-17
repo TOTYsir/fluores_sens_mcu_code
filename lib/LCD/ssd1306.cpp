@@ -2,8 +2,8 @@
 #include <Wire.h>
 #include "ssd1306.h"
 
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 void lcd_init(void) {
     if (!display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR)) {
@@ -15,7 +15,7 @@ void lcd_init(void) {
     display.clearDisplay();
 }
 
-void lcd_flush(float volts0, float volts1) {
+void lcd_flush(float volts0, float volts1, float norm) {
     display.clearDisplay();
     display.setTextSize(1);
     display.setTextColor(SSD1306_WHITE);
@@ -25,5 +25,7 @@ void lcd_flush(float volts0, float volts1) {
     display.printf("PDy Voltage: %.2f V", volts0);
     display.setCursor(0, 40);
     display.printf("PDo Voltage: %.2f V", volts1);
+    display.setCursor(0, 40);
+    display.printf("Normalised: %.2f V", norm);
     display.display();
 }

@@ -10,7 +10,7 @@
 #define CHARACTERISTIC_UUID_TX "bcf0e6da-9d88-4497-bad3-2fc93acb2f78"
 
 void ble_init();
-void ble_send(float volts0, float volts1);
+void ble_send(float volts0, float volts1, float norm_val);
 
 #endif
 
