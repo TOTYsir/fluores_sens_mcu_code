@@ -8,7 +8,7 @@ void led_pwm_init(float dutyCycle) {
 }
 
 int led_control(float dutyCycle, int total_sample_cnt) {
-    int led_state = (total_sample_cnt % 210 <= 150) ? HIGH : LOW;
+    int led_state = (total_sample_cnt % (SAMPLES_PER_ON_CYCLE + SAMPLES_PER_OFF_CYCLE) <= SAMPLES_PER_ON_CYCLE) ? HIGH : LOW;
 
     if (led_state)  
         ledcWrite(PWM_CHANNEL, (int)(MAX_DUTY_CYCLE * dutyCycle));

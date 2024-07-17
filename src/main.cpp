@@ -6,6 +6,9 @@
 #include <ble.h>
 #include <uart.h>
 
+// Sample period
+#define SAMPLING_TIME_MS 200
+
 // Serial configuration
 #define BAUD_RATE 115200
 // ADC readings configuration
@@ -21,6 +24,7 @@ int totalSampleCounter = 1;
 int cycleCounter = 1;
 
 
+
 void setup() {
     Serial.begin(BAUD_RATE);
     lcd_init();
@@ -30,6 +34,8 @@ void setup() {
 }
 
 void loop() {
+   unsigned long startMillis = millis();
+
     int cycle_finish_flag = led_control(pwm_duty_cycle, sampleCounter);
 
     adc_read_store(photodiode_readings, data_index);
@@ -45,5 +51,12 @@ void loop() {
     if (cycle_finish_flag) {
         sampleCounter = 1; // ++
         cycleCounter++;
+    }
+    
+    unsigned long endMillis = millis(); 
+    unsigned long elapsedTime = endMillis - startMillis;
+    // Period control
+    if (elapsedTime < SAMPLING_TIME_MS) {
+        vTaskDelay((SAMPLING_TIME_MS - elapsedTime) / portTICK_PERIOD_MS);
     }
 }
