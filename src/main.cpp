@@ -18,7 +18,7 @@ float pd_0[SAMPLES_PER_ON_CYCLE+SAMPLES_PER_OFF_CYCLE];
 float pd_1[SAMPLES_PER_ON_CYCLE+SAMPLES_PER_OFF_CYCLE];
 
 // PWM settings
-float pwm_duty_cycle = 0.70;
+float pwm_duty_cycle = 0.50;
 
 // Counter initialisation
 int sampleCounter = 1;
@@ -52,8 +52,8 @@ void loop() {
         norm_val = get_norm(pd_0, pd_1);
     }
 
-    lcd_flush(volts0, volts1, norm_val);
     serial_update(volts0, volts1, norm_val, sampleCounter, totalSampleCounter, cycleCounter);
+    lcd_flush(volts0, volts1, norm_val);
     ble_send(volts0, volts1, norm_val);
 
     sampleCounter++;
@@ -62,6 +62,9 @@ void loop() {
     if (cycle_finish_flag) {
         sampleCounter = 1; // ++
         cycleCounter++;
+        
+        memset(pd_0, 0, sizeof(pd_0));
+        memset(pd_1, 0, sizeof(pd_1));
     }
     
     unsigned long endMillis = millis(); 

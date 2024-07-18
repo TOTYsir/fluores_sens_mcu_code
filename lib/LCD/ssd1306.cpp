@@ -17,15 +17,19 @@ void lcd_init(void) {
 
 void lcd_flush(float volts0, float volts1, float norm) {
     display.clearDisplay();
+
     display.setTextSize(1);
     display.setTextColor(SSD1306_WHITE);
+    
     display.setCursor(0, 0);
-    display.println("Photodiode Readings");
+    display.printf("Normalised: %.4f ", norm);
+    
     display.setCursor(0, 20);
-    display.printf("PDy Voltage: %.2f V", volts0);
+    display.printf("PD orange: %.2f V", volts0);
+
     display.setCursor(0, 40);
-    display.printf("PDo Voltage: %.2f V", volts1);
-    display.setCursor(0, 40);
-    display.printf("Normalised: %.2f V", norm);
+    display.printf("PD yellow: %.2f V", volts1);
     display.display();
+
+    vTaskDelay(20);
 }

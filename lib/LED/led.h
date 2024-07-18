@@ -7,8 +7,8 @@
 #define PWM_RESOLUTION 10
 #define MAX_DUTY_CYCLE (int)(pow(2, PWM_RESOLUTION) - 1)
 
-#define SAMPLES_PER_ON_CYCLE 35
-#define SAMPLES_PER_OFF_CYCLE 15
+#define SAMPLES_PER_ON_CYCLE 50
+#define SAMPLES_PER_OFF_CYCLE 50
 
 
 void led_pwm_init(float dutyCycle);

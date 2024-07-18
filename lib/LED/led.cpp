@@ -15,7 +15,7 @@ int led_control(float dutyCycle, int total_sample_cnt) {
     else    
         ledcWrite(PWM_CHANNEL, 0);
 
-    if (total_sample_cnt % 210 == 0)    return 1;
+    if (total_sample_cnt % (SAMPLES_PER_ON_CYCLE + SAMPLES_PER_OFF_CYCLE) == 0)    return 1;
 
     return 0;
 }
