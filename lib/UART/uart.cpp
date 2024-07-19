@@ -9,6 +9,6 @@ void serial_update(float volts0, float volts1, float norm, int sample_num, int t
     // Serial.printf("$%d %d %d %lu %.3f %.3f %.3f;", 
     //     cycle_num, total_sample, sample_num, current_time, volts0, volts1, norm);
 
-    Serial.printf("%.2f %.2f %.4f\n", volts0, volts1, norm);
+    Serial.printf("$%.3f %.3f %.5f;", volts0, volts1, norm); // follow the serial port plotter
     vTaskDelay(20);
 }

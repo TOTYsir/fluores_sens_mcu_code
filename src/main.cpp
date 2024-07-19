@@ -18,7 +18,7 @@ float pd_0[SAMPLES_PER_ON_CYCLE+SAMPLES_PER_OFF_CYCLE];
 float pd_1[SAMPLES_PER_ON_CYCLE+SAMPLES_PER_OFF_CYCLE];
 
 // PWM settings
-float pwm_duty_cycle = 0.50;
+float pwm_duty_cycle = 0.70;
 
 // Counter initialisation
 int sampleCounter = 1;
