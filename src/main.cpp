@@ -52,7 +52,7 @@ void loop() {
         norm_val = get_norm(pd_0, pd_1);
     }
 
-    serial_update(volts0, volts1, norm_val, sampleCounter, totalSampleCounter, cycleCounter);
+    serial_update_record(volts0, volts1, norm_val, sampleCounter, totalSampleCounter, cycleCounter);
     lcd_flush(volts0, volts1, norm_val);
     ble_send(volts0, volts1, norm_val);
 

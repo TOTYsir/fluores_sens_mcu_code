@@ -24,13 +24,13 @@ class MyServerCallbacks : public BLEServerCallbacks {
 */
 class MyCallbacks : public BLECharacteristicCallbacks {
     void onWrite(BLECharacteristic *pCharacteristic) {
-        std::string rxValue = pCharacteristic->getValue(); // Get the value written to the characteristic
-        if (rxValue.length() > 0) {
-            Serial.print("RX: ");
-            for (int i = 0; i < rxValue.length(); i++)
-                Serial.print(rxValue[i]);
-            Serial.println();
-        }
+        // std::string rxValue = pCharacteristic->getValue(); // Get the value written to the characteristic
+        // if (rxValue.length() > 0) {
+        //     Serial.print("RX: ");
+        //     for (int i = 0; i < rxValue.length(); i++)
+        //         Serial.print(rxValue[i]);
+        //     Serial.println();
+        // }
     }
 };
 
@@ -54,10 +54,7 @@ void ble_init() {
     pService->start();
     pServer->getAdvertising()->start(); // start advertising
 
-    Serial.println("Waiting for a client connection...");
-    Serial.println("START");
-
-    pTxCharacteristic->setValue("HELLO WORLD");
+    pTxCharacteristic->setValue("BLE initialisation completed");
 }
 
 
